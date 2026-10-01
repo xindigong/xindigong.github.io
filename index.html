@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Xindi Gong — research in scientific machine learning, inverse problems, uncertainty quantification, and computational science.">
+  <meta name="theme-color" content="#ffffff">
+  <title>Xindi Gong — Research</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="site-title" href="#home">Xindi Gong</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span><span class="sr-only">Open navigation</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#research">Research</a>
+        <a href="#shape-dino">Shape-DINO</a>
+        <a href="#publications">Publications</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-shell" id="home">
+    <aside class="profile" aria-label="Profile">
+      <img class="profile-photo" src="assets/xindi-gong.jpg" alt="Portrait of Xindi Gong" width="5482" height="3305">
+      <h1>Xindi Gong</h1>
+      <p class="profile-role">CSEM PhD Student</p>
+      <p class="profile-summary">Scientific machine learning, inverse problems, uncertainty quantification, and PDE-constrained optimization.</p>
+
+      <ul class="profile-links">
+        <li><span aria-hidden="true">●</span> Austin, Texas</li>
+        <li><a href="mailto:xindi.gong@utexas.edu"><span aria-hidden="true">✉</span> Email</a></li>
+        <li><a href="https://www.linkedin.com/in/xindi-gong-80273b1b9"><span aria-hidden="true">in</span> LinkedIn</a></li>
+        <li><a href="https://github.com/xindigong"><span aria-hidden="true">⌘</span> GitHub</a></li>
+        <li><a href="https://arxiv.org/search/?searchtype=author&amp;query=Gong%2C+Xindi"><span aria-hidden="true">a</span> arXiv</a></li>
+        <li><a href="https://www.oden.utexas.edu/people/directory/Xindi-Gong/"><span aria-hidden="true">↗</span> Oden profile</a></li>
+      </ul>
+
+      <p class="profile-note">Open to postdoctoral and research opportunities.</p>
+    </aside>
+
+    <main class="content" id="content">
+      <section class="content-section intro-section" id="research">
+        <h2>Research</h2>
+        <p class="lead">I develop scalable mathematical and computational methods for learning, inference, and decision-making in systems governed by partial differential equations.</p>
+        <p>I am a PhD student in the Computational Science, Engineering, and Mathematics program at the <a href="https://www.oden.utexas.edu/">Oden Institute</a>, advised by <a href="https://users.oden.utexas.edu/~omar/">Prof. Omar Ghattas</a>. My work connects scientific machine learning, inverse problems, uncertainty quantification, optimization, and high-performance computing.</p>
+
+        <h3 id="digital-twins">Predictive digital twins</h3>
+        <p>A unifying goal of my research is to develop predictive digital twins: computational models that combine high-fidelity physics and observations, quantify uncertainty in their predictions, and support reliable design and control.</p>
+
+        <div class="twin-flow" aria-label="Predictive digital twin research cycle">
+          <div><span>01</span><strong>Inference</strong><small>learn hidden parameters from observations</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span>02</span><strong>Uncertainty quantification</strong><small>characterize predictive uncertainty and risk</small></div>
+          <b aria-hidden="true">→</b>
+          <div><span>03</span><strong>Optimization &amp; control</strong><small>make robust decisions under uncertainty</small></div>
+        </div>
+
+        <h3 id="themes">Research themes</h3>
+        <ul class="theme-list">
+          <li><strong>Scientific machine learning:</strong> operator-learning surrogates that respect physics, geometry, and derivative information.</li>
+          <li><strong>Inverse problems:</strong> scalable recovery of distributed physical parameters from indirect and noisy observations.</li>
+          <li><strong>Uncertainty quantification:</strong> high-dimensional representations of uncertainty and risk-aware prediction.</li>
+          <li><strong>Computational science:</strong> numerical PDEs, adjoints, finite elements, large-scale optimization, and parallel algorithms.</li>
+        </ul>
+      </section>
+
+      <section class="content-section" id="shape-dino">
+        <h2>Shape-DINO</h2>
+        <p class="lead">Shape derivative-informed neural operators for risk-averse shape optimization.</p>
+        <p>Shape optimization under uncertainty is expensive because risk estimation requires many PDE and sensitivity evaluations across uncertain inputs and changing geometries. The two diagrams below summarize the outer-loop problem and the geometric formulation used by Shape-DINO.</p>
+
+        <h3 id="ouu-overview">PDE-constrained optimization under uncertainty</h3>
+        <figure class="slide-figure">
+          <a href="assets/shape-ouu-overview.png" target="_blank" rel="noopener">
+            <img src="assets/shape-ouu-overview.png" alt="Diagram showing uncertain parameters and shape variables entering a PDE model, producing a state and quantity of interest that feed a risk-aware shape optimization problem" width="1134" height="638">
+          </a>
+          <figcaption>The OUU problem couples uncertain parameters, geometric design variables, the PDE state, a quantity of interest, and a risk measure. Select the figure to view it full size.</figcaption>
+        </figure>
+
+        <h3 id="domain-mapping">Reference and deformed domains</h3>
+        <figure class="slide-figure">
+          <a href="assets/reference-domain-mapping.png" target="_blank" rel="noopener">
+            <img src="assets/reference-domain-mapping.png" alt="Diagram showing a reference computational domain mapped to a deformed physical domain by a diffeomorphism, with state and parameter variables pulled back to the reference domain" width="1134" height="638">
+          </a>
+          <figcaption>A diffeomorphic mapping connects each physical geometry to a common reference domain, allowing learning and differentiation on a fixed mesh.</figcaption>
+        </figure>
+
+        <p>Shape-DINO learns the parametric solution operator on this fixed reference domain and jointly approximates the PDE state and its Fréchet derivatives with respect to uncertain parameters and shape variables. Training on derivatives is essential for downstream optimization: state accuracy alone does not guarantee accurate gradients or reliable stationary points.</p>
+
+        <figure class="wide-figure">
+          <img src="assets/shape-dino-optimization.gif" alt="Streamlines around a three-dimensional body as its shape changes during optimization" width="1800" height="700">
+          <figcaption>Evolution of the three-dimensional geometry during Shape-DINO-driven optimization. The animation is displayed at its original aspect ratio.</figcaption>
+        </figure>
+
+        <h3 id="shape-results">Main results</h3>
+        <ul>
+          <li>Accurate solution and derivative approximation across families of geometries.</li>
+          <li>A priori bounds connecting surrogate derivative error to optimization error.</li>
+          <li>Universal approximation results for multi-input reduced-basis neural operators in suitable <i>C</i><sup>1</sup> norms.</li>
+          <li>Three to eight orders-of-magnitude speedups in state and gradient evaluations in the numerical examples.</li>
+          <li>One to two orders-of-magnitude fewer PDE solves than a strictly PDE-based workflow for one OUU problem, including training-data generation.</li>
+        </ul>
+
+        <div class="button-row">
+          <a class="button" href="https://arxiv.org/abs/2603.03211">arXiv</a>
+          <a class="button" href="https://arxiv.org/pdf/2603.03211">PDF</a>
+          <a class="button" href="assets/shape-dino-slides.pdf">Slides</a>
+        </div>
+      </section>
+
+      <section class="content-section" id="japan-inversion">
+        <h2>Viscosity Inversion Beneath Japan</h2>
+        <p class="lead">PDE-constrained inference of three-dimensional mantle rheology from postseismic geodetic observations.</p>
+        <p>Postseismic surface motion contains information about viscosity structure deep in Earth’s mantle. This project develops a scalable inversion framework connecting GNSS displacement observations to a three-dimensional viscoelastic model of the Japan subduction zone.</p>
+
+        <p class="note"><strong>Status.</strong> Ongoing work. Final Japan figures and observational-data results will be added when they are ready.</p>
+      </section>
+
+      <section class="content-section" id="publications">
+        <h2>Publications</h2>
+        <article class="publication">
+          <p class="publication-year">2026 · arXiv preprint</p>
+          <h3>Shape Derivative-Informed Neural Operators with Application to Risk-Averse Shape Optimization</h3>
+          <p class="authors"><strong>Xindi Gong</strong>, Dingcheng Luo, Thomas O’Leary-Roseberry, Ruanui Nicholson, and Omar Ghattas</p>
+          <p>Derivative-informed operator learning over variable geometries, with approximation theory and demonstrations in PDE-constrained shape optimization under uncertainty.</p>
+          <p class="publication-links"><a href="https://arxiv.org/abs/2603.03211">arXiv</a> · <a href="https://arxiv.org/pdf/2603.03211">PDF</a> · <a href="assets/shape-dino-slides.pdf">Slides</a></p>
+        </article>
+      </section>
+
+      <section class="content-section" id="about">
+        <h2>About</h2>
+        <p>I am a CSEM PhD student at The University of Texas at Austin, supervised by Prof. Omar Ghattas. Before UT Austin, I earned a B.S. in Applied Mathematics and Statistics from Emory University.</p>
+        <p>I am interested in research positions spanning scientific machine learning, inverse problems, uncertainty quantification, optimization, and computational science.</p>
+      </section>
+    </main>
+
+    <aside class="topic-nav" aria-label="On this page">
+      <div class="topic-title">Research topics</div>
+      <a href="#digital-twins">Predictive digital twins</a>
+      <a href="#themes">Research themes</a>
+      <a href="#shape-dino">Shape-DINO</a>
+      <a class="subtopic" href="#ouu-overview">OUU overview</a>
+      <a class="subtopic" href="#domain-mapping">Domain mapping</a>
+      <a class="subtopic" href="#shape-results">Main results</a>
+      <a href="#japan-inversion">Japan viscosity inversion</a>
+      <a href="#publications">Publications</a>
+    </aside>
+  </div>
+
+  <footer class="site-footer">© <span data-year></span> Xindi Gong · Built for clarity, accessibility, and scientific communication.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
