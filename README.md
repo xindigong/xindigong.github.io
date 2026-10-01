@@ -5,7 +5,6 @@ A static, responsive academic research website focused on predictive digital twi
 ## Preview locally
 
 ```bash
-cd /storage/xindi/personal_website
 python3 -m http.server 8000
 ```
 
